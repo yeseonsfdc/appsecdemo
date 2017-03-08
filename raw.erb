@@ -1,0 +1,29 @@
+
+AA-39852
+<%=raw t("agent.customer.read_only_with_owner.label",
+		:image => (@customer.lockable.is_a?(User) ? render(:partial => "users/thumb", :locals => { :user => @customer.lockable, :size => 16 }) : ""),
+-		:owner => @customer.lockable.lockable_name) %>
++		:owner => @customer.lockable.lockable_name.to_s.html_encode) %>
+
+
+AA-39604
+<%=raw t("agent.case.read_only_with_active_user.label",
+        :image=>"<span>#{render :partial=>"users/thumb",
+        :locals=>{:user=>@ticket.active_user,:size=>16}}</span>",
+-       :user=>@ticket.active_user.name.to_s.to_plain)%>
++       :user=>@ticket.active_user.name.to_html_escaped)%>
+
+<%=raw(t("agent.ticket_filters.item.active_user",
+		:image=>"#{render :partial=>"users/thumb", :locals=>{:user=>ticket.active_user,:size=>16}}",
+-		:name=>ticket.active_user.name.to_s.to_plain))%>
++		:name=>ticket.active_user.name.to_html_escaped))%>
+
+
+AA-39042
+<%=raw("<span title='#{ t("admin.hidden_message") }' class='a-hidden'></span>") unless topic.show_in_portal %>
+-       <%=truncate(topic.name_plain, length: 25)%>
++       <%=truncate(topic.name, length: 25)%>
+
+
+
+
