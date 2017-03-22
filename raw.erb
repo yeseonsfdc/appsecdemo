@@ -1,4 +1,6 @@
 
+<%=raw new thing %>
+
 AA-39852
 <%=raw t("agent.customer.read_only_with_owner.label",
 		:image => (@customer.lockable.is_a?(User) ? render(:partial => "users/thumb", :locals => { :user => @customer.lockable, :size => 16 }) : ""),
@@ -20,6 +22,11 @@ AA-39604
 
 
 AA-39042
+<%=raw("<span title='#{ t("admin.hidden_message") }' class='a-hidden'></span>") unless topic.show_in_portal %>
+-       <%=truncate(topic.name_plain, length: 25)%>
++       <%=truncate(topic.name, length: 25)%>
+
+
 <%=raw("<span title='#{ t("admin.hidden_message") }' class='a-hidden'></span>") unless topic.show_in_portal %>
 -       <%=truncate(topic.name_plain, length: 25)%>
 +       <%=truncate(topic.name, length: 25)%>
